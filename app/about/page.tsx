@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import {
   BriefcaseBusiness,
   Clock3,
+  Languages,
   MapPin,
   Target,
   Wrench,
@@ -13,6 +14,7 @@ import { DraftTag } from "@/components/ui/draft-tag";
 import { EditorialSection } from "@/components/ui/editorial-section";
 import { PortraitFrame } from "@/components/ui/portrait-frame";
 import { getContent } from "@/lib/content";
+import { getCvAction } from "@/lib/cv";
 import { getPublicContent } from "@/lib/getPublicContent";
 import { getRobotsMetadata } from "@/lib/seo";
 
@@ -89,6 +91,13 @@ export default function AboutPage() {
     .filter((value): value is string => Boolean(value))
     .join(" · ");
 
+  const cv = getCvAction(content.cv.pdfUrl);
+  const languagesList = content.languages.visible
+    ? content.languages.items
+        .filter((lang) => lang.level && lang.level.trim().length > 0)
+        .map((lang) => `${lang.name} (${lang.level})`)
+    : [];
+
   const glanceItems: GlanceItem[] = [];
   if (location) glanceItems.push({ label: "Location", value: location, Icon: MapPin });
   if (focus) glanceItems.push({ label: "Focus", value: focus, Icon: Target });
@@ -102,6 +111,13 @@ export default function AboutPage() {
   }
   if (tools.length > 0) {
     glanceItems.push({ label: "Tools", value: tools.join(", "), Icon: Wrench });
+  }
+  if (languagesList.length > 0) {
+    glanceItems.push({
+      label: "Languages",
+      value: languagesList.join(", "),
+      Icon: Languages,
+    });
   }
   if (availability) {
     glanceItems.push({
@@ -139,12 +155,21 @@ export default function AboutPage() {
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <Button href="/contact">{content.hero.ctaSecondary}</Button>
                 <Button
-                  href={content.cv.pdfUrl ?? "/cv"}
+                  href={cv.primary.href}
                   variant="secondary"
-                  external={Boolean(content.cv.pdfUrl)}
+                  external={cv.primary.external}
                 >
-                  {content.hero.ctaPrimary}
+                  {cv.primary.label}
                 </Button>
+                {cv.secondary ? (
+                  <Button
+                    href={cv.secondary.href}
+                    variant="secondary"
+                    external={cv.secondary.external}
+                  >
+                    {cv.secondary.label}
+                  </Button>
+                ) : null}
               </div>
             </div>
             <div className="mx-auto w-full max-w-[340px] md:mx-0 md:justify-self-end">

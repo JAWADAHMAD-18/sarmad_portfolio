@@ -9,9 +9,11 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { ContactForm } from "@/components/sections/contact-form";
+import { Button } from "@/components/ui/button";
 import { EditorialSection } from "@/components/ui/editorial-section";
 import { getContent } from "@/lib/content";
 import { getPublicContent } from "@/lib/getPublicContent";
+import { formatPhoneDisplay } from "@/lib/phone";
 import { getRobotsMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
@@ -79,7 +81,7 @@ export default function ContactPage() {
   if (publicPhone) {
     details.push({
       label: "Telephone",
-      value: publicPhone,
+      value: formatPhoneDisplay(publicPhone),
       Icon: Phone,
       href: `tel:${publicPhone}`,
     });
@@ -87,7 +89,7 @@ export default function ContactPage() {
   if (publicWhatsapp) {
     details.push({
       label: "WhatsApp",
-      value: "Chat on WhatsApp",
+      value: formatPhoneDisplay(publicWhatsapp),
       Icon: MessageCircle,
       href: `https://wa.me/${publicWhatsapp.replace(/\D/g, "")}`,
       external: true,
@@ -96,7 +98,7 @@ export default function ContactPage() {
   if (content.contact.linkedin) {
     details.push({
       label: "LinkedIn",
-      value: "Profile",
+      value: "linkedin.com/in/sarmad-ali-a42ab03b9",
       Icon: Globe,
       href: content.contact.linkedin,
       external: true,
@@ -183,6 +185,17 @@ export default function ContactPage() {
               </div>
             ))}
           </div>
+          {publicWhatsapp ? (
+            <div className="mt-6">
+              <Button
+                href={`https://wa.me/${publicWhatsapp.replace(/\D/g, "")}`}
+                variant="secondary"
+                external
+              >
+                Chat on WhatsApp
+              </Button>
+            </div>
+          ) : null}
         </EditorialSection>
       ) : null}
     </div>

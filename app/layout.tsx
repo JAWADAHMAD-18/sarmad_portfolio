@@ -31,6 +31,7 @@ const fonts = `${geistSans.variable} ${geistMono.variable} ${instrumentSerif.var
 export function generateMetadata(): Metadata {
   const content = getPublicContent();
   const siteUrl = getSiteUrl();
+  const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
 
   return {
     metadataBase: new URL(siteUrl),
@@ -40,6 +41,13 @@ export function generateMetadata(): Metadata {
     },
     description: content.meta.tagline,
     robots: getRobotsMetadata(),
+    ...(googleVerification
+      ? {
+          verification: {
+            google: googleVerification,
+          },
+        }
+      : {}),
     openGraph: {
       type: "website",
       siteName: content.meta.name,

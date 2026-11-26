@@ -4,6 +4,7 @@ import { ExperienceTimeline } from "@/components/sections/experience-timeline";
 import { Button } from "@/components/ui/button";
 import { EditorialSection } from "@/components/ui/editorial-section";
 import { getContent } from "@/lib/content";
+import { getCvAction } from "@/lib/cv";
 import { getPublicContent } from "@/lib/getPublicContent";
 import { getRobotsMetadata } from "@/lib/seo";
 
@@ -34,7 +35,7 @@ export function generateMetadata(): Metadata {
 export default function ExperiencePage() {
   const content = getPublicContent();
   const source = getContent();
-  const pdfUrl = content.cv.pdfUrl;
+  const cv = getCvAction(content.cv.pdfUrl);
   const acca = content.acca.visible ? content.acca : null;
 
   const qualificationRows = [
@@ -140,10 +141,16 @@ export default function ExperiencePage() {
         title="Curriculum Vitae"
       >
         <div className="flex flex-wrap items-center gap-3">
-          <Button href="/cv">View CV</Button>
-          {pdfUrl ? (
-            <Button href={pdfUrl} variant="secondary" external>
-              {content.hero.ctaPrimary}
+          <Button href={cv.primary.href} external={cv.primary.external}>
+            {cv.primary.label}
+          </Button>
+          {cv.secondary ? (
+            <Button
+              href={cv.secondary.href}
+              variant="secondary"
+              external={cv.secondary.external}
+            >
+              {cv.secondary.label}
             </Button>
           ) : null}
         </div>

@@ -5,7 +5,7 @@
     "name": "Sarmad Ali",
     "title": "ACCA Student and Junior Accountant",
     "tagline": "ACCA student and Junior Accountant specialising in UK taxation",
-    "location": { "country": "Pakistan", "city": null },
+    "location": { "country": "Pakistan", "city": "Hasilpur, Punjab" },
     "availability": "Open to full-time remote roles and freelance work",
     "availabilityDetail": "Remote worldwide · UK hours",
     "purpose": "job and clients",
@@ -20,7 +20,7 @@
     "visible": true,
     "headline": "Sarmad Ali | Junior Accountant, UK Taxation",
     "subheadline": "ACCA finalist helping UK sole traders and companies with bookkeeping, taxation, payroll and financial statements.",
-    "ctaPrimary": "Download CV",
+    "ctaPrimary": "View CV",
     "ctaSecondary": "Get in touch"
   },
 
@@ -36,7 +36,7 @@
 
   "services": {
     "visible": true,
-    "needsApproval": true,
+    "needsApproval": false,
     "heading": "What I do",
     "intro": "Remote accounting support for UK sole traders and companies.",
     "items": [
@@ -49,7 +49,7 @@
           "Maintaining clean ledgers and supporting schedules in Excel",
           "Preparing organised records ahead of period-end"
         ],
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Taxation",
@@ -60,7 +60,7 @@
           "Tracking key HMRC filing and payment dates",
           "Maintaining clear working papers for review"
         ],
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Payroll",
@@ -71,7 +71,7 @@
           "Supporting PAYE and statutory deduction schedules",
           "Reconciling payroll figures back to the ledger"
         ],
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Financial statements",
@@ -82,36 +82,36 @@
           "Preparing supporting schedules and account reconciliations",
           "Delivering structured files ready for final review"
         ],
-        "needsApproval": true
+        "needsApproval": false
       }
     ]
   },
 
   "process": {
     "visible": true,
-    "needsApproval": true,
+    "needsApproval": false,
     "heading": "How I work with you",
     "intro": "A clear, structured workflow from initial brief to final review.",
     "steps": [
       {
         "title": "Brief",
         "description": "Confirm scope, UK accounting software, and upcoming deadlines.",
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Records",
         "description": "Gather bank statements, invoices, and prior working papers.",
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Prepare and file",
         "description": "Reconcile ledgers, draft schedules, and prepare returns for approval.",
-        "needsApproval": true
+        "needsApproval": false
       },
       {
         "title": "Review and report",
         "description": "Walk through the figures clearly and hand over organised files.",
-        "needsApproval": true
+        "needsApproval": false
       }
     ]
   },
@@ -205,9 +205,10 @@
         "role": "Junior Accountant",
         "company": "Taxvise Limited",
         "industry": null,
-        "period": "Present",
-        "startDate": null,
+        "period": "November 2024 – Present",
+        "startDate": "2024-11",
         "responsibilities": [
+          "Handling UK client work across all areas of taxation for Taxvise Limited, a firm headquartered in England.",
           "Supporting day-to-day bookkeeping and bank reconciliations using QuickBooks, Zoho, and Excel",
           "Preparing UK tax schedules and supporting working papers for sole traders and companies",
           "Assisting with payroll data preparation and ledger reconciliations",
@@ -215,7 +216,7 @@
         ],
         "achievements": null,
         "tools": null,
-        "needsApproval": true
+        "needsApproval": false
       }
     ]
   },
@@ -233,10 +234,10 @@
   },
 
   "languages": {
-    "visible": false,
+    "visible": true,
     "items": [
-      { "name": "Urdu", "level": null },
-      { "name": "English", "level": null }
+      { "name": "Urdu", "level": "Fluent" },
+      { "name": "English", "level": "Fluent" }
     ]
   },
 
@@ -259,7 +260,7 @@
 
   "closing": {
     "visible": true,
-    "needsApproval": true,
+    "needsApproval": false,
     "heading": "Need UK tax or bookkeeping support?",
     "text": "Whether you are a sole trader, a company or a hiring team, I would be glad to hear from you."
   },
@@ -267,13 +268,13 @@
   "contact": {
     "visible": true,
     "email": { "value": "samu631800@gmail.com", "public": true, "temporary": true },
-    "phone": { "value": "+923216006318", "public": false },
-    "whatsapp": { "value": null, "public": false },
-    "linkedin": null,
+    "phone": { "value": "+923216006318", "public": true },
+    "whatsapp": { "value": "+923216006318", "public": true },
+    "linkedin": "https://www.linkedin.com/in/sarmad-ali-a42ab03b9",
     "otherLinks": [],
     "city": null,
-    "workingHours": null,
-    "formRecipientEmail": null
+    "workingHours": "Flexible, available whenever clients need me",
+    "formRecipientEmail": "samu631800@gmail.com"
   },
 
   "cv": {

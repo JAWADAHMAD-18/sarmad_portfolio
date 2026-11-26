@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CvActions } from "@/components/cv/cv-actions";
 import { getPublicContent } from "@/lib/getPublicContent";
+import { formatPhoneDisplay } from "@/lib/phone";
 import { getRobotsMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
@@ -27,6 +28,13 @@ export function generateMetadata(): Metadata {
 export default function CvPage() {
   const content = getPublicContent();
   const publicEmail = content.contact.email.public ? content.contact.email.value : null;
+  const publicPhone = content.contact.phone.public ? content.contact.phone.value : null;
+  const locationText = [
+    content.contact.city ?? content.meta.location.city,
+    content.meta.location.country,
+  ]
+    .filter((value): value is string => Boolean(value))
+    .join(", ");
 
   return (
     <div className="min-h-screen bg-[#F4F4EE] py-8 text-[#0B1B2E] dark:bg-[#0A0F14] print:bg-white print:p-0">
@@ -50,9 +58,30 @@ export default function CvPage() {
                 Email: <span className="text-[#0B1B2E]">{publicEmail}</span>
               </span>
             ) : null}
-            {content.meta.location.country ? (
+            {publicPhone ? (
               <span>
-                Location: <span className="text-[#0B1B2E]">{content.meta.location.country}</span>
+                Phone:{" "}
+                <a href={`tel:${publicPhone}`} className="text-[#0B1B2E] underline-offset-2 hover:underline">
+                  {formatPhoneDisplay(publicPhone)}
+                </a>
+              </span>
+            ) : null}
+            {locationText ? (
+              <span>
+                Location: <span className="text-[#0B1B2E]">{locationText}</span>
+              </span>
+            ) : null}
+            {content.contact.linkedin ? (
+              <span>
+                LinkedIn:{" "}
+                <a
+                  href={content.contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#0B1B2E] underline underline-offset-2"
+                >
+                  sarmad-ali-a42ab03b9
+                </a>
               </span>
             ) : null}
             {content.meta.availability ? (

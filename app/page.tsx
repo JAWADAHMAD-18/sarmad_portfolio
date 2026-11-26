@@ -9,27 +9,41 @@ import { Skills } from "@/components/sections/skills";
 import { TaxCalendar } from "@/components/sections/tax-calendar";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FadeIn } from "@/components/ui/fade-in";
+import { getCvAction } from "@/lib/cv";
 import { getPublicContent } from "@/lib/getPublicContent";
 import { getContent } from "@/lib/content";
 import { getRobotsMetadata, getSiteUrl } from "@/lib/seo";
 import { isSectionOn } from "@/lib/visibility";
 
+function buildHomeDescription(content: ReturnType<typeof getPublicContent>): string {
+  const locationParts = [
+    content.meta.location.city,
+    content.meta.location.country,
+  ].filter((part): part is string => Boolean(part));
+  const locationText = locationParts.join(", ");
+  const full = locationText
+    ? `${content.meta.name} — ACCA finalist and Junior Accountant in UK taxation. Based in ${locationText}, offering remote UK client support.`
+    : content.hero.subheadline;
+  return full.length <= 160 ? full : content.hero.subheadline;
+}
+
 export function generateMetadata(): Metadata {
   const content = getPublicContent();
+  const description = buildHomeDescription(content);
   return {
     title: { absolute: content.hero.headline },
-    description: content.hero.subheadline,
+    description,
     alternates: { canonical: "/" },
     robots: getRobotsMetadata(),
     openGraph: {
       title: content.hero.headline,
-      description: content.hero.subheadline,
+      description,
       url: "/",
     },
     twitter: {
       card: "summary_large_image",
       title: content.hero.headline,
-      description: content.hero.subheadline,
+      description,
     },
   };
 }
@@ -49,8 +63,7 @@ export default function HomePage() {
   const showTestimonials = isSectionOn("testimonials", content);
   const showClosing = isSectionOn("closing", content);
 
-  const cvHref = content.cv.pdfUrl ?? "/cv";
-  const cvIsFile = Boolean(content.cv.pdfUrl);
+  const cv = getCvAction(content.cv.pdfUrl);
   const siteUrl = getSiteUrl();
 
   const sameAs = [
@@ -61,6 +74,15 @@ export default function HomePage() {
   ];
 
   const primaryEmployer = content.experience.items[0]?.company;
+  const [locality, region] = (content.meta.location.city ?? "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  const countryCode =
+    content.meta.location.country?.toLowerCase() === "pakistan"
+      ? "PK"
+      : content.meta.location.country;
+  const knowsAbout = content.skills.technical.filter((item) => item.trim().length > 0);
 
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -68,6 +90,17 @@ export default function HomePage() {
     name: content.meta.name,
     jobTitle: content.meta.title,
     url: siteUrl,
+    ...(locality || region || countryCode
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            ...(locality ? { addressLocality: locality } : {}),
+            ...(region ? { addressRegion: region } : {}),
+            ...(countryCode ? { addressCountry: countryCode } : {}),
+          },
+        }
+      : {}),
+    ...(knowsAbout.length > 0 ? { knowsAbout } : {}),
     ...(primaryEmployer
       ? {
           worksFor: {
@@ -98,10 +131,10 @@ export default function HomePage() {
           <Hero
             headline={content.hero.headline}
             subheadline={content.hero.subheadline}
-            ctaPrimary={content.hero.ctaPrimary}
+            ctaPrimary={cv.primary.label}
             ctaSecondary={content.hero.ctaSecondary}
-            cvHref={cvHref}
-            cvIsFile={cvIsFile}
+            cvHref={cv.primary.href}
+            cvIsFile={cv.primary.external}
             availability={content.meta.availability}
             photo={content.meta.photo}
             accaLevel={content.acca.level}

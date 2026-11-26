@@ -50,6 +50,8 @@ npm run check -- --strict
 - any required field (`meta.name`, `meta.title`, `hero.headline`, `hero.subheadline`) is `null`, or
 - any item still has `"needsApproval": true`.
 
+Optional fields (`cv.pdfUrl`, ACCA paper codes/exemptions, certificates, testimonials, projects) may remain `null` and do not fail `--strict`.
+
 ---
 
 ## Managing Content (`docs/content.json`)
@@ -58,8 +60,8 @@ npm run check -- --strict
 
 - **Editing copy:** Update the text directly in `docs/content.json`. `null` values are automatically omitted from the rendered site.
 - **Showing or hiding a section:** Set `"visible": true` or `"visible": false` on any top-level section (for example `services`, `process`, `taxCalendar`, `languages`, `projects`, `testimonials`). Hidden sections are also removed from `sitemap.xml`.
-- **Approving a draft item:** Drafted items carry `"needsApproval": true` (and show a subtle `Draft` tag in development or when `NEXT_PUBLIC_SHOW_DRAFTS=true`). Once reviewed and approved, set `"needsApproval": false` (or remove the key) in `docs/content.json`.
-- **Privacy:** `contact.phone` and `contact.whatsapp` are stripped on the server by `lib/getPublicContent.ts` whenever their `public` flag is `false`.
+- **Approving a draft item:** Drafted items carry `"needsApproval": true` (and show a subtle `Draft` tag in development or when `NEXT_PUBLIC_SHOW_DRAFTS=true`). Once reviewed and approved, set `"needsApproval": false` in `docs/content.json`.
+- **Privacy:** `contact.phone` and `contact.whatsapp` are stripped on the server by `lib/getPublicContent.ts` whenever their `public` flag is `false`. Phone numbers are never included in JSON-LD, even when public.
 
 ### Adding the CV PDF
 
@@ -70,7 +72,7 @@ npm run check -- --strict
      "pdfUrl": "/cv/Sarmad-Ali-CV.pdf"
    }
    ```
-   When `cv.pdfUrl` is `null`, the site links to the printable `/cv` web page instead.
+   When `cv.pdfUrl` is `null`, CV buttons read **"View CV"** and link to `/cv`. When `cv.pdfUrl` is set, the primary CV button automatically reads **"Download CV"** and links to the PDF, with **"View CV"** as a secondary link.
 
 ### Updating the Portrait Photo
 
@@ -94,12 +96,23 @@ Copy `.env.example` to `.env.local` for local testing, and configure the same va
 
 | Variable | Description |
 | --- | --- |
-| `RESEND_API_KEY` | Resend API key for sending contact form emails. If omitted, the contact form degrades gracefully to a `mailto:` link. |
-| `CONTACT_TO_EMAIL` | Destination inbox for contact form submissions (falls back to `contact.formRecipientEmail`, then `contact.email.value` in `content.json`). |
-| `CONTACT_FROM_EMAIL` | Verified sender address in Resend (e.g. `Portfolio <no-reply@yourdomain.com>`). |
-| `NEXT_PUBLIC_SITE_URL` | Canonical public URL of the deployed site (e.g. `https://sarmadali.uk`), used for canonical tags, OpenGraph, `sitemap.xml`, and `robots.txt`. |
+| `RESEND_API_KEY` | Resend API key for sending contact form emails. When unset, the contact form cleanly degrades to a `mailto:` fallback. |
+| `CONTACT_TO_EMAIL` | Destination inbox (`samu631800@gmail.com`). **Note:** without a verified custom domain, Resend only delivers to the email address that owns the Resend account, so `CONTACT_TO_EMAIL` must be that same Gmail. |
+| `CONTACT_FROM_EMAIL` | Sender address in Resend (use `"Portfolio <onboarding@resend.dev>"` until a custom domain is verified). |
+| `NEXT_PUBLIC_SITE_URL` | Canonical public URL of the deployed site (e.g. `https://sarmadali.vercel.app`), used for canonical tags, OpenGraph, `sitemap.xml`, and `robots.txt`. |
 | `NEXT_PUBLIC_ALLOW_INDEXING` | **Indexing safety switch** (default `false`). While not `"true"`, `robots.txt` disallows all crawlers and every page outputs `noindex, nofollow`. Switch to `"true"` **only at launch**. |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Optional Google Search Console verification token (`<meta name="google-site-verification" ...>`). |
 | `NEXT_PUBLIC_SHOW_DRAFTS` | Optional (`false` by default). Set to `"true"` only if you want `Draft` tags visible in a non-local preview build. |
+
+---
+
+## Google Search Console Setup
+
+1. Open [Google Search Console](https://search.google.com/search-console) and add a **URL-prefix** property using the live `https://` URL (matching `NEXT_PUBLIC_SITE_URL`).
+2. Choose the **HTML tag** verification method and copy the `content` token value.
+3. Add `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=<token>` in Vercel **Environment Variables** (alongside `NEXT_PUBLIC_ALLOW_INDEXING=true`) and redeploy.
+4. Click **Verify** in Google Search Console.
+5. Submit `/sitemap.xml` under **Sitemaps**, then use **URL Inspection** to request indexing for the home page (`/`).
 
 ---
 
@@ -108,8 +121,9 @@ Copy `.env.example` to `.env.local` for local testing, and configure the same va
 1. Push the repository to GitHub.
 2. Import the repository in [Vercel](https://vercel.com) (Next.js preset is detected automatically).
 3. Add the environment variables from `.env.example` in **Project Settings → Environment Variables**. Keep `NEXT_PUBLIC_ALLOW_INDEXING=false` for preview/staging.
-4. Before going live:
-   - Clear all `needsApproval: true` drafts and confirm required fields in `docs/content.json`.
-   - Run `npm run check -- --strict` and verify it exits with `0`.
-   - Run `npm run typecheck`, `npm run lint`, and `npm run build`.
-5. At launch, attach the custom domain in Vercel, set `NEXT_PUBLIC_SITE_URL` to the production `https://` URL, set `NEXT_PUBLIC_ALLOW_INDEXING=true`, and trigger a redeploy.
+4. Before going live, run:
+   - `npm run check -- --strict`
+   - `npm run typecheck`
+   - `npm run lint`
+   - `npm run build`
+5. At launch, set `NEXT_PUBLIC_SITE_URL` to the production `https://` URL, set `NEXT_PUBLIC_ALLOW_INDEXING=true`, and trigger a redeploy.
