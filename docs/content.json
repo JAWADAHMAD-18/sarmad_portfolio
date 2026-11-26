@@ -1,0 +1,282 @@
+{
+  "_readme": "Single source of truth for all site copy. null = missing (hide it). Items with needsApproval:true are developer-written drafts. Translated from the approved Roman Urdu content.",
+
+  "meta": {
+    "name": "Sarmad Ali",
+    "title": "ACCA Student and Junior Accountant",
+    "tagline": "ACCA student and Junior Accountant specialising in UK taxation",
+    "location": { "country": "Pakistan", "city": null },
+    "availability": "Open to full-time remote roles and freelance work",
+    "availabilityDetail": "Remote worldwide · UK hours",
+    "purpose": "job and clients",
+    "photo": {
+      "src": "sarmad.png",
+      "alt": "Portrait of Sarmad Ali"
+    },
+    "siteUrl": null
+  },
+
+  "hero": {
+    "visible": true,
+    "headline": "Sarmad Ali | Junior Accountant, UK Taxation",
+    "subheadline": "ACCA finalist helping UK sole traders and companies with bookkeeping, taxation, payroll and financial statements.",
+    "ctaPrimary": "Download CV",
+    "ctaSecondary": "Get in touch"
+  },
+
+  "credentials": {
+    "visible": true,
+    "items": [
+      { "label": "ACCA journey", "value": "Since 2023", "numeric": false },
+      { "label": "ACCA level", "value": "Strategic Professional", "numeric": false },
+      { "label": "Focus", "value": "UK taxation", "numeric": false },
+      { "label": "Tools", "value": "Excel, QuickBooks, Zoho", "numeric": false }
+    ]
+  },
+
+  "services": {
+    "visible": true,
+    "needsApproval": true,
+    "heading": "What I do",
+    "intro": "Remote accounting support for UK sole traders and companies.",
+    "items": [
+      {
+        "title": "Bookkeeping",
+        "description": "Accurate, up-to-date records so your numbers are always ready when you need them.",
+        "included": [
+          "Recording sales, purchases, and expenses in QuickBooks or Zoho",
+          "Regular bank and credit card reconciliations",
+          "Maintaining clean ledgers and supporting schedules in Excel",
+          "Preparing organised records ahead of period-end"
+        ],
+        "needsApproval": true
+      },
+      {
+        "title": "Taxation",
+        "description": "UK tax support for sole traders and companies.",
+        "included": [
+          "Organising income and allowable expense schedules",
+          "Supporting UK Self Assessment and company tax preparation",
+          "Tracking key HMRC filing and payment dates",
+          "Maintaining clear working papers for review"
+        ],
+        "needsApproval": true
+      },
+      {
+        "title": "Payroll",
+        "description": "Payroll support for UK businesses.",
+        "included": [
+          "Preparing regular payroll calculations and summaries",
+          "Keeping employee pay records organised and consistent",
+          "Supporting PAYE and statutory deduction schedules",
+          "Reconciling payroll figures back to the ledger"
+        ],
+        "needsApproval": true
+      },
+      {
+        "title": "Financial statements",
+        "description": "Clear financial statements prepared for UK sole traders and companies.",
+        "included": [
+          "Compiling trial balances and year-end adjustments",
+          "Drafting profit and loss accounts and balance sheets",
+          "Preparing supporting schedules and account reconciliations",
+          "Delivering structured files ready for final review"
+        ],
+        "needsApproval": true
+      }
+    ]
+  },
+
+  "process": {
+    "visible": true,
+    "needsApproval": true,
+    "heading": "How I work with you",
+    "intro": "A clear, structured workflow from initial brief to final review.",
+    "steps": [
+      {
+        "title": "Brief",
+        "description": "Confirm scope, UK accounting software, and upcoming deadlines.",
+        "needsApproval": true
+      },
+      {
+        "title": "Records",
+        "description": "Gather bank statements, invoices, and prior working papers.",
+        "needsApproval": true
+      },
+      {
+        "title": "Prepare and file",
+        "description": "Reconcile ledgers, draft schedules, and prepare returns for approval.",
+        "needsApproval": true
+      },
+      {
+        "title": "Review and report",
+        "description": "Walk through the figures clearly and hand over organised files.",
+        "needsApproval": true
+      }
+    ]
+  },
+
+  "taxCalendar": {
+    "visible": true,
+    "heading": "Key UK tax dates",
+    "note": "General information, not advice",
+    "startLabel": "6 April",
+    "endLabel": "5 April",
+    "dates": [
+      {
+        "date": "6 April",
+        "title": "Tax year starts",
+        "note": "A new UK personal tax year begins and annual allowances reset.",
+        "position": 0
+      },
+      {
+        "date": "31 July",
+        "title": "Second payment on account",
+        "note": "Second Self Assessment payment on account is due to HMRC.",
+        "position": 32
+      },
+      {
+        "date": "5 October",
+        "title": "Register for Self Assessment",
+        "note": "Deadline to register with HMRC if you need to submit a return for the first time.",
+        "position": 50
+      },
+      {
+        "date": "31 October",
+        "title": "Paper Self Assessment deadline",
+        "note": "Deadline for submitting a paper Self Assessment tax return to HMRC.",
+        "position": 57
+      },
+      {
+        "date": "31 January",
+        "title": "Online return and payment deadline",
+        "note": "Deadline for online Self Assessment returns, balancing payments, and first payment on account.",
+        "position": 82
+      },
+      {
+        "date": "5 April",
+        "title": "Tax year ends",
+        "note": "Final day of the UK personal tax year for income, reliefs, and allowances.",
+        "position": 100
+      }
+    ]
+  },
+
+  "about": {
+    "visible": true,
+    "bio": "I'm Sarmad Ali, an ACCA finalist and Junior Accountant from Pakistan. I work in UK taxation and currently serve as a Junior Accountant at Taxvise Limited. Accounting is my passion, and I have been preparing for ACCA at Skans School of Accountancy since 2023. I want to keep working with UK sole traders and companies on bookkeeping, taxation, payroll and financial statements.",
+    "strengths": ["Adaptability", "Consistency", "Problem solving", "Ambition"],
+    "workStyle": ["Teamwork", "Works to deadlines", "Detail-oriented"],
+    "goals": null,
+    "interests": null
+  },
+
+  "education": {
+    "visible": true,
+    "items": [
+      {
+        "qualification": "ACCA",
+        "institute": "Skans School of Accountancy",
+        "period": "2023 – Present",
+        "grade": null,
+        "notes": null
+      }
+    ]
+  },
+
+  "acca": {
+    "visible": true,
+    "level": "Strategic Professional",
+    "levelNote": "Recently started",
+    "institute": "Skans School of Accountancy",
+    "since": "2023",
+    "papersCleared": null,
+    "papersInProgress": null,
+    "exemptions": null,
+    "expectedCompletion": null,
+    "membershipNumber": null,
+    "membershipNumberPublic": false
+  },
+
+  "experience": {
+    "visible": true,
+    "items": [
+      {
+        "role": "Junior Accountant",
+        "company": "Taxvise Limited",
+        "industry": null,
+        "period": "Present",
+        "startDate": null,
+        "responsibilities": [
+          "Supporting day-to-day bookkeeping and bank reconciliations using QuickBooks, Zoho, and Excel",
+          "Preparing UK tax schedules and supporting working papers for sole traders and companies",
+          "Assisting with payroll data preparation and ledger reconciliations",
+          "Compiling draft financial statements and period-end schedules for review"
+        ],
+        "achievements": null,
+        "tools": null,
+        "needsApproval": true
+      }
+    ]
+  },
+
+  "skills": {
+    "visible": true,
+    "tools": [
+      { "name": "Excel", "level": "Advanced" },
+      { "name": "QuickBooks", "level": "Advanced" },
+      { "name": "Zoho", "level": "Advanced" }
+    ],
+    "technical": ["Bookkeeping", "Taxation", "Payroll", "Financial statements"],
+    "soft": ["Teamwork", "Works to deadlines", "Detail-oriented", "Adaptability", "Consistency", "Problem solving"],
+    "excelSkills": null
+  },
+
+  "languages": {
+    "visible": false,
+    "items": [
+      { "name": "Urdu", "level": null },
+      { "name": "English", "level": null }
+    ]
+  },
+
+  "certifications": {
+    "visible": true,
+    "items": [
+      { "name": "Diploma in Accounting and Finance", "institute": null, "year": null }
+    ]
+  },
+
+  "projects": {
+    "visible": false,
+    "items": []
+  },
+
+  "testimonials": {
+    "visible": false,
+    "items": []
+  },
+
+  "closing": {
+    "visible": true,
+    "needsApproval": true,
+    "heading": "Need UK tax or bookkeeping support?",
+    "text": "Whether you are a sole trader, a company or a hiring team, I would be glad to hear from you."
+  },
+
+  "contact": {
+    "visible": true,
+    "email": { "value": "samu631800@gmail.com", "public": true, "temporary": true },
+    "phone": { "value": "+923216006318", "public": false },
+    "whatsapp": { "value": null, "public": false },
+    "linkedin": null,
+    "otherLinks": [],
+    "city": null,
+    "workingHours": null,
+    "formRecipientEmail": null
+  },
+
+  "cv": {
+    "pdfUrl": null
+  }
+}
